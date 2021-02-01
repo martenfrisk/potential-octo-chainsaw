@@ -1,0 +1,1 @@
+{"skipAudits":["uses-http2","is-on-https"],"chromeFlags":" --headless"}
