@@ -20,7 +20,7 @@
 		src={`/images/${imgsrc}.jpg`}
 		alt={`Cover for ${alt}`}
 		loading="lazy"
-		class="shadow-lg rounded-xl"
+		class="rounded-2xl"
 		width="300"
 		height="300"
 	/>

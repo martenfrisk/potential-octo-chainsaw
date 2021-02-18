@@ -1,20 +1,61 @@
-<script context="module">
+<script context="module" lang="ts">
 	import { getProductByArtnr } from '../../utils/api'
+	import type { APIArticle } from '../../methods/types'
+
 	export async function preload({ params }) {
-		const product = await getProductByArtnr(params.id)
-		return { product }
+		const product: APIArticle = await getProductByArtnr(params.id)
+		const tempArticle = {
+			id: product.article.id,
+			productName: product.article.title,
+			productId: product.article.id,
+			cover: product.article.image.normal,
+			price: product.article.price,
+			shortDescription: product.article.short_description,
+			description: product.article.description,
+		}
+		return { product: tempArticle }
 	}
 </script>
 
 <script lang="typescript">
-	export let product
+	import type { FilteredArticle } from '../../methods/types'
+	export let product: FilteredArticle
 	import PSCover from '../../components/PSCover.svelte'
+
+	import Basket from '../../components/icons/Basket.svelte'
+	import StarEmpty from '../../components/icons/StarEmpty.svelte'
 </script>
 
-<details>
-	<summary>Details</summary>
-	<pre>{JSON.stringify(product, null, 4)}</pre>
-</details>
-{#await product then product}
-	<PSCover cover={product.article.image.normal} />
-{/await}
+<div class="relative z-10">
+	<div
+		class="flex flex-wrap justify-center w-5/6 max-w-5xl px-4 py-6 mx-auto my-4 text-white bg-gray-600 bg-opacity-25 border border-gray-500 sm:my-12 sm:px-20 font-quicksand rounded-3xl hero"
+	>
+		<div class="flex flex-col justify-center w-full sm:w-2/5">
+			<p class="text-4xl font-semibold">
+				{product.productName}<span class="ml-2 text-2xl font-normal"
+					>({product.price}:-)</span
+				>
+			</p>
+			<p class="my-2">{@html product.description}</p>
+			<div class="flex">
+				<div class="text-white hover:text-yellow-200">
+					<StarEmpty />
+				</div>
+				<div class="ml-2 text-white hover:text-yellow-200">
+					<Basket />
+				</div>
+			</div>
+		</div>
+		<div class="flex justify-end w-2/5">
+			<PSCover cover={product.cover} alt={product.productName} />
+		</div>
+	</div>
+
+
+</div>
+
+<style>
+	.hero {
+		backdrop-filter: blur(10px);
+	}
+</style>

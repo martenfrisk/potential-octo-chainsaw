@@ -160,3 +160,131 @@ export type UserOrder = {
 	total_amount_incl_vat: string
 	details: any
 }
+
+export interface UserData {
+	pass: string
+	type: number
+	currency: string
+	language: string
+	vat: string
+	user: string
+	category_id: string
+	id: string
+	session_id: string
+	contact_id: string
+}
+
+export interface Availibility {
+	max_days: string
+	id: string
+	min_days: string
+	title: string
+	info_title: string
+	dynamic: number
+	visible: number
+	requestable: number
+	product_page: number
+	info_text: string
+	bookable: number
+	monitoring: number
+	orderable: number
+}
+
+export interface Brand {
+	name: string
+	id: string
+	brands?: any
+	article_list?: any
+}
+
+export interface ExtraImages {
+	1: string
+}
+
+export interface Image {
+	small: string
+	normal: string
+	extra_images: ExtraImages
+	large: string
+}
+
+export interface Vat {
+	vat: string
+	description: string
+	id: string
+	rate?: any
+}
+
+export interface Campaign {
+	id: string
+	name?: any
+}
+
+export interface Supplier {
+	id: string
+	name: string
+}
+
+export interface AirArticle {
+	short_description_owner?: any
+	variation_options: any[]
+	availibility_out_of_stock?: any
+	hierarchy_artgrps?: any
+	availibility: Availibility
+	availibility_in_stock?: any
+	package_price_type?: any
+	number_of_grades: number
+	avg_grade?: any
+	variation_groups: any[]
+	brand: Brand
+	create_time: string
+	campaign_stop_time?: any
+	friendly_url: string
+	type: string
+	rsk?: any
+	hierarchy_category_names?: any
+	category?: any
+	parent: string
+	category_id_default?: any
+	price_recommended: number
+	variation_articles: any[]
+	order_quantity?: any
+	title: string
+	properties?: any
+	stock: string
+	campaign_start_time?: any
+	image: Image
+	categories: string[]
+	description_owner?: any
+	short_description: string
+	description: string
+	active: number
+	more_info: string
+	url?: any
+	ean?: any
+	id: string
+	update_time: string
+	price_disccount: number
+	vat: Vat
+	price: number
+	campaign: Campaign
+	supplier: Supplier
+	product_supplier_id?: any
+	package_groups: any[]
+	article_prices?: any
+}
+
+export interface APIArticle {
+	user_data: UserData;
+	article: AirArticle;
+}
+
+export interface FilteredArticle {
+	id: string;
+	productName: string;
+	productId: string;
+	cover: string;
+	price: number;
+	shortDescription: string;
+	description: string;
+}

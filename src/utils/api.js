@@ -82,8 +82,8 @@ export async function getCategories() {
 export async function getCategory(category, limit = '8') {
 	const catMd = getMd('get_category', category, limit, 0, 'BeskrFallande')
 	const catBody = getCategoryMethod(category, limit, appId, catMd)
-	const data = await fetchAPI(catBody)
-	return data.category.article_list
+	const data = await fetchAPI(catBody, true)
+	return data.category
 }
 
 export async function getProductByArtnr(artnr) {
@@ -178,5 +178,26 @@ export async function getOrder(pass, session, user, id, orderId) {
 		ordersMd
 	)
 	const data = await fetchAPI(ordersBody, true)
+	return data
+}
+
+
+
+export async function updateCart(
+	user,
+	productId,
+	quantity,
+) {
+	const cartMd = getMd('update_cart', 0, '', quantity, productId, '')
+	const cartBody = updateCartMethod(user, productId, quantity, appId, cartMd)
+	const data = await fetchAPI(cartBody, true)
+	return data
+}
+export async function getCart(
+	user,
+) {
+	const cartMd = getMd('get_cart')
+	const cartBody = getCartMethod(user, appId, cartMd)
+	const data = await fetchAPI(cartBody, true)
 	return data
 }

@@ -1,12 +1,5 @@
 module.exports = {
-  future: {
-		removeDeprecatedGapUtilities: true,
-		purgeLayersByDefault: true,
-  },
-  purge: {
-		mode: 'all',
-		content: ['./src/**/*.svelte','./src/**/*.html'],
-	},
+  purge: ['./src/**/*.svelte','./src/**/*.html'],
   theme: {
 		fontFamily: {
 			'quicksand': ['Quicksand', 'ui-sans-serif', 'system-ui']

@@ -6,29 +6,35 @@
 </script>
 
 <div
-	class="flex flex-wrap items-center justify-center border border-gray-200 rounded-md shadow-lg"
+	class="flex flex-wrap items-center justify-center w-full h-full border border-gray-200 shadow-md hover:shadow-lg rounded-2xl"
 >
-	<div class="flex flex-col items-center px-2 py-4">
-		<a rel="prefetch" class="w-2/3 my-4" href={`/product/${productId}`}>
+	<div class="relative flex flex-col items-center p-3">
+		<a rel="prefetch" class="w-full" href={`/product/${productId}`}>
 			<PsCover {cover} alt={productName} />
 		</a>
-
-	</div>
-	<div class="w-full px-4 pt-2 pb-4 -mb-2 text-center bg-blue-100 rounded-t-md">
-		<a
-			class="text-xl font-light font-quicksand"
-			rel="prefetch"
-			href={`/product/${productId}`}>
-			{productName}
-		</a>
-	</div>
-	<div class="flex items-center justify-between w-full text-white bg-blue-600 rounded-t-lg rounded-b-md ">
-		<div class="p-2">
+		<div class="absolute top-0 right-0 p-1 mt-4 mr-4 text-white bg-gray-500 bg-opacity-75 rounded-full hover:text-yellow-200 sm:p-2">
 			<StarEmpty />
 		</div>
-		<div class="text-lg font-normal font-quicksand">{price}:-</div>
-		<div class="p-2">
-			<Basket />
+	</div>
+	<div class="flex items-center w-full px-3 mb-2">
+		<div class="flex flex-col justify-between w-4/5">
+			<a
+				class="h-12 text-lg font-light leading-snug align-top line-clamp-2 font-quicksand"
+				rel="prefetch"
+				href={`/product/${productId}`}
+			>
+				{productName}
+			</a>
+			<div class="text-base font-semibold font-quicksand">
+				{price}:-
+			</div>
+		</div>
+		<div class="flex justify-center w-1/5">
+			<div class="p-1 text-white bg-blue-400 rounded-full hover:bg-blue-500 hover:shadow-md sm:p-2">
+
+				<Basket />
+			</div>
 		</div>
 	</div>
 </div>
+

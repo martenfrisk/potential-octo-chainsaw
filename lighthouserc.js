@@ -1,10 +1,11 @@
 module.exports = {
 	ci: {
 		collect: {
-			startServerCommand: 'npx serve __sapper__/export',
+			startServerCommand: 'serve __sapper__/export',
+			startServerReadyPattern: 'Serving!',
 			url: ['http://localhost:5000/'],
 			settings: {
-				skipAudits: ['uses-http2', 'is-on-https'],
+				skipAudits: ['uses-http2', 'is-on-https', 'redirects-http'],
 			},
 		},
 		upload: {
