@@ -8,7 +8,7 @@
 </script>
 
 <div
-	class="flex flex-wrap justify-center w-5/6 max-w-5xl px-4 py-6 mx-auto my-4 text-white bg-gray-600 bg-opacity-25 border border-gray-500 sm:my-12 sm:px-20 font-quicksand rounded-3xl hero"
+	class="flex flex-wrap justify-center w-5/6 max-w-5xl px-4 py-6 mx-auto my-4 text-white bg-gray-600 bg-opacity-50 border border-gray-500 sm:my-16 sm:px-20 font-quicksand rounded-3xl hero"
 >
 	<div class="flex flex-col justify-center w-full sm:w-2/5">
 		<p class="text-4xl font-semibold">
@@ -19,7 +19,7 @@
 				>({heroProduct.price}:-)</span
 			>
 		</p>
-		<p class="my-2">{heroProduct.description}</p>
+		<p class="p-4 my-4 bg-gray-700 bg-opacity-25 rounded-md">{heroProduct.description}</p>
 		<div class="flex">
 			<div class="text-white hover:text-yellow-200">
 				<StarEmpty />
