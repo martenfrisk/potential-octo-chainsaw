@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { user } from '../utils/store'
-	import Cart from './icons/Cart.svelte'
+import Cart from './Cart.svelte'
+	import CartIcon from './icons/CartIcon.svelte'
 	import Login from './Login.svelte'
 	$: showLoginBox = false
 	export const logout = () => {
@@ -47,7 +48,8 @@
 				<Login />
 			{/if}
 			<div class="flex items-center text-blue-700">
-				<Cart svgClass="w-6 h-6" />
+				<CartIcon svgClass="w-6 h-6" />
+				<Cart />
 			</div>
 		</div>
 	</div>
