@@ -16,6 +16,7 @@ import {
 	loginMethod,
 } from '../methods/customer'
 import { getMenuMethod } from '../methods/menu'
+import { getCartMethod, updateCartMethod } from '../methods/cart'
 
 const appKey = 'wyD4oDd3oyT6iT7N'
 const appId = '1000'
@@ -181,8 +182,6 @@ export async function getOrder(pass, session, user, id, orderId) {
 	return data
 }
 
-
-
 export async function updateCart(
 	user,
 	productId,
@@ -193,6 +192,7 @@ export async function updateCart(
 	const data = await fetchAPI(cartBody, true)
 	return data
 }
+
 export async function getCart(
 	user,
 ) {
