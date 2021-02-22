@@ -1,6 +1,5 @@
 <script lang="typescript">
 	export let cover: string, alt: string
-	const imgsrc = cover.split('/')[3].split('?')[0].split('.')[0]
 </script>
 
 <!-- <div class="container">
@@ -14,13 +13,13 @@
 	</div>
 </div> -->
 <picture>
-	<source srcSet={`/images/${imgsrc}.avif`} type="image/avif" />
-	<source srcSet={`/images/${imgsrc}.webp`} type="image/webp" />
+	<source srcSet={`/images/${cover}.avif`} type="image/avif" />
+	<source srcSet={`/images/${cover}.webp`} type="image/webp" />
 	<img
-		src={`/images/${imgsrc}.jpg`}
+		src={`/images/${cover}.jpg`}
 		alt={`Cover for ${alt}`}
-		loading="lazy"
 		class="rounded-2xl"
+		loading="lazy"
 		width="300"
 		height="300"
 	/>
