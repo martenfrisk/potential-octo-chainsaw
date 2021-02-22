@@ -3,6 +3,18 @@
 	import StarEmpty from './icons/StarEmpty.svelte'
 	import Basket from './icons/Basket.svelte'
 	export let cover, productName, price, productId
+	const addToCart = () => {
+		if (typeof window !== undefined) {
+			const prevCart = JSON.parse(window.localStorage.getItem('sapper-cart'))
+			const tempObj = { productName, price, productId, quantity: 1 }
+			if (prevCart) {
+				const newCart = [...prevCart, tempObj]
+				window.localStorage.setItem('sapper-cart', JSON.stringify(newCart))
+			} else {
+				window.localStorage.setItem('sapper-cart', JSON.stringify([tempObj]))
+			}
+		}
+	}
 </script>
 
 <div
@@ -12,7 +24,9 @@
 		<a rel="prefetch" class="w-full" href={`/product/${productId}`}>
 			<PsCover {cover} alt={productName} />
 		</a>
-		<div class="absolute top-0 right-0 p-1 mt-4 mr-4 text-white bg-gray-500 bg-opacity-75 rounded-full hover:text-yellow-200 sm:p-2">
+		<div
+			class="absolute top-0 right-0 p-1 mt-4 mr-4 text-white bg-gray-500 bg-opacity-75 rounded-full hover:text-yellow-200 sm:p-2"
+		>
 			<StarEmpty />
 		</div>
 	</div>
@@ -30,11 +44,12 @@
 			</div>
 		</div>
 		<div class="flex justify-center w-1/5">
-			<div class="p-1 text-white bg-blue-400 rounded-full hover:bg-blue-500 hover:shadow-md sm:p-2">
-
+			<div
+				class="p-1 text-white bg-blue-400 rounded-full cursor-pointer hover:bg-blue-500 hover:shadow-md sm:p-2"
+				on:click={addToCart}
+			>
 				<Basket />
 			</div>
 		</div>
 	</div>
 </div>
-
