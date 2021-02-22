@@ -41,8 +41,8 @@
 	import Basket from '../../components/icons/Basket.svelte'
 	import StarEmpty from '../../components/icons/StarEmpty.svelte'
 	import MoreProducts from '../../components/MoreProducts.svelte'
-	import { fly } from 'svelte/transition'
-	import { quintIn } from 'svelte/easing'
+	// import { fly } from 'svelte/transition'
+	// import { quintIn } from 'svelte/easing'
 	export let product: FilteredArticle, moreProducts: IndexProduct[]
 	const filteredMore = moreProducts
 		.filter(i => i.productId !== product.productId)
@@ -56,7 +56,6 @@
 <div class="relative z-10">
 	<div
 		class="flex flex-wrap justify-center w-5/6 max-w-5xl px-4 py-6 mx-auto my-4 text-white bg-gray-600 bg-opacity-25 border border-gray-500 sm:my-12 sm:px-20 font-quicksand rounded-3xl hero"
-		in:fly={{ y: -50, opacity: 0.5, easing: quintIn }}
 	>
 		<div class="flex flex-col justify-center w-full sm:w-2/5">
 			<p class="text-4xl font-semibold">
