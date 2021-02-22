@@ -8,8 +8,6 @@
 <Nav />
 <main>
 	<div class="absolute top-0 z-0 w-full h-screen wrap" />
-	
-		
 	<slot />
 </main>
 
