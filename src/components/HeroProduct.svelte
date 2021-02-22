@@ -12,7 +12,10 @@
 >
 	<div class="flex flex-col justify-center w-full sm:w-2/5">
 		<p class="text-4xl font-semibold">
-			{heroProduct.productName}<span class="ml-2 text-2xl font-normal"
+			<a rel="prefetch" class="hover:underline" href={`/product/${heroProduct.productId}`}>
+			{heroProduct.productName}
+			</a>
+			<span class="ml-2 text-2xl font-normal"
 				>({heroProduct.price}:-)</span
 			>
 		</p>
