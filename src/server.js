@@ -7,6 +7,7 @@ const { PORT } = process.env;
 
 express() // You can also use Express
 	.use(
+		process.env.NODE_ENV === 'production' ? '/svelte' : '',
 		compression({ threshold: 0 }),
 		sirv('static'),
 		sapper.middleware()

@@ -1,6 +1,6 @@
 <script lang="ts">
 	export let heroProduct: IndexProduct
-
+	import { fly } from 'svelte/transition'
 	import PsCover from '../components/PSCover.svelte'
 	import Basket from '../components/icons/Basket.svelte'
 	import StarEmpty from '../components/icons/StarEmpty.svelte'
@@ -12,7 +12,7 @@
 >
 	<div class="flex flex-col justify-center w-full sm:w-2/5">
 		<p class="text-4xl font-semibold">
-			<a rel="prefetch" class="hover:underline" href={`/product/${heroProduct.productId}`}>
+			<a rel="prefetch" class="hover:underline" href={`${process.env.NODE_ENV === 'production' ? '/svelte' : ''}/product/${heroProduct.productId}`}>
 			{heroProduct.productName}
 			</a>
 			<span class="ml-2 text-2xl font-normal"

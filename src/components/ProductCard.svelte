@@ -2,6 +2,8 @@
 	import PsCover from './PSCover.svelte'
 	import StarEmpty from './icons/StarEmpty.svelte'
 	import Basket from './icons/Basket.svelte'
+	// import { fly } from 'svelte/transition'
+	// import { quintIn } from 'svelte/easing'
 	export let cover, productName, price, productId
 	const addToCart = () => {
 		if (typeof window !== undefined) {
@@ -21,7 +23,7 @@
 	class="flex flex-wrap items-center justify-center w-full h-full border border-gray-200 shadow-md hover:shadow-lg rounded-2xl"
 >
 	<div class="relative flex flex-col items-center p-3">
-		<a rel="prefetch" class="w-full" href={`/product/${productId}`}>
+		<a rel="prefetch" class="w-full" href={`${process.env.NODE_ENV === 'production' ? '/svelte' : ''}/product/${productId}`}>
 			<PsCover {cover} alt={productName} />
 		</a>
 		<div
@@ -35,7 +37,7 @@
 			<a
 				class="h-12 text-lg font-light leading-snug align-top line-clamp-2 font-quicksand"
 				rel="prefetch"
-				href={`/product/${productId}`}
+				href={`${process.env.NODE_ENV === 'production' ? '/svelte' : ''}/product/${productId}`}
 			>
 				{productName}
 			</a>

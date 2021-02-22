@@ -41,7 +41,7 @@
 	{#each categories as category}
 		<a
 			class="mx-2 text-lg border-b border-transparent sm:text-xl sm:mx-8 font-quicksand hover:border-black"
-			href={`/spel/${category.id}/${category.title}`}
+			href={`${process.env.NODE_ENV === 'production' ? '/svelte' : ''}/spel/${category.id}/${category.title}`}
 		>
 			{category.title}
 		</a>

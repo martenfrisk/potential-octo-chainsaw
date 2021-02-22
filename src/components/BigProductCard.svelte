@@ -12,12 +12,12 @@
 		<p class="order-last text-lg sm:order-first sm:text-2xl">{price}:-</p>
 		<a
 			rel="prefetch"
-			href={`/product/${productId}`}>
+			href={`${process.env.NODE_ENV === 'production' ? '/svelte' : ''}/product/${productId}`}>
 			{productName}
 		</a>
 	</div>
 	<div class="flex flex-col items-center justify-center w-full px-2 py-2 mt-4 space-x-4 sm:px-8 sm:flex-row ">
-		<a rel="prefetch" class="w-4/5 sm:w-1/3 " href={`/product/${productId}`}>
+		<a rel="prefetch" class="w-4/5 sm:w-1/3 " href={`${process.env.NODE_ENV === 'production' ? '/svelte' : ''}/product/${productId}`}>
 			<PsCover {cover} alt={productName} />
 		</a>
 		<p class="w-full px-6 pt-4 sm:w-1/2 sm:pt-0">{description}</p>
