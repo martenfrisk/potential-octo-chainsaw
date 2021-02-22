@@ -8,7 +8,10 @@
 			id: product.article.id,
 			productName: product.article.title,
 			productId: product.article.id,
-			cover: product.article.image.normal.split('/')[3].split('?')[0].split('.')[0],
+			cover: product.article.image.normal
+				.split('/')[3]
+				.split('?')[0]
+				.split('.')[0],
 			price: product.article.price,
 			shortDescription: product.article.short_description,
 			description: product.article.description,
@@ -61,8 +64,9 @@
 					>({product.price}:-)</span
 				>
 			</p>
-			<p class="my-2">{product.cover}
-				{@html product.description}</p>
+			<p class="my-2">
+				{@html product.description}
+			</p>
 			<div class="flex">
 				<div class="text-white hover:text-yellow-200">
 					<StarEmpty />
