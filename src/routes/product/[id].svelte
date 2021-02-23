@@ -47,6 +47,7 @@
 	const filteredMore = moreProducts
 		.filter(i => i.productId !== product.productId)
 		.slice(0, 8)
+	let readMore = false
 </script>
 
 <svelte:head>
@@ -63,19 +64,40 @@
 					>({product.price}:-)</span
 				>
 			</p>
-			<p class="my-2">
+			<p
+				class={`my-2 ${readMore ? 'line-clamp-none' : 'line-clamp-6'}`}
+				on:click={() => (readMore = !readMore)}
+			>
 				{@html product.description}
 			</p>
-			<div class="flex">
-				<div class="text-white hover:text-yellow-200">
-					<StarEmpty />
+			{#if !readMore}
+				<p
+					class="w-full text-center pointer-cursor"
+					on:click={() => (readMore = !readMore)}
+				>
+					Read more...
+				</p>
+			{/if}
+			<div class="flex justify-center w-full mt-4 sm:justify-start">
+				<div class="w-1/2 px-2">
+					<div class="flex items-center px-2 py-px text-blue-500 bg-white border-2 border-blue-400 rounded-md shadow-md">
+						<span>
+							<StarEmpty />
+						</span>
+						<span class="ml-2">Add to wishlist</span>
+					</div>
 				</div>
-				<div class="ml-2 text-white hover:text-yellow-200">
-					<Basket />
+				<div class="w-1/2 px-2">
+					<div class="flex items-center px-2 py-px text-white border-2 border-blue-500 rounded-md shadow-md bg-gradient-to-r from-blue-600 to-blue-500">
+						<span class="text-white hover:text-yellow-200">
+							<Basket />
+						</span>
+						<span class="ml-2"> Buy </span>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="flex justify-end w-2/5">
+		<div class="flex justify-end w-4/5 mt-4 sm:w-2/5">
 			<PSCover cover={product.cover} alt={product.productName} />
 		</div>
 	</div>
