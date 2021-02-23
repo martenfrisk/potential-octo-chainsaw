@@ -1,11 +1,9 @@
 <script lang="ts">
-	import type { CartType } from '../methods/cart-types'
-
-	import { getCart } from '../utils/api'
+import { onMount } from 'svelte';
 
 	import { user } from '../utils/store'
+
 	import Cart from './Cart.svelte'
-	import CartIcon from './icons/CartIcon.svelte'
 	import Login from './Login.svelte'
 	$: showLoginBox = false
 	export const logout = () => {
@@ -19,14 +17,14 @@
 			showLoginBox = true
 		}
 	}
-	let items: CartType
-	const importCart = async () => {
-		if ($user) {
-			items = await getCart(JSON.parse($user))
-		} else {
-			if (typeof window !== undefined) items = JSON.parse(window.localStorage.getItem('sapper-cart')) 
+
+	onMount(async () => {
+		if (window.localStorage.getItem('svelte-userdata')) {
+			user.set(window.localStorage.getItem('svelte-userdata'))
 		}
-	}
+		console.log($user)
+	})
+
 </script>
 
 <nav style="top: -2rem" class="sticky z-30 flex items-center w-full h-24 bg-white border-b border-blue-400 border-opacity-50">
@@ -58,10 +56,7 @@
 				<Login />
 			{/if}
 			<div class="flex items-center text-blue-700">
-				<span class="cursor-pointer" on:click={importCart}>
-					<CartIcon svgClass="w-6 h-6 " />
-				</span>
-				<Cart {items} />
+				<Cart />
 			</div>
 		</div>
 	</div>
