@@ -1,6 +1,6 @@
 <script lang="ts">
 	export let heroProduct: IndexProduct
-	import { fly } from 'svelte/transition'
+	// import { fly } from 'svelte/transition'
 	import PsCover from '../components/PSCover.svelte'
 	import Basket from '../components/icons/Basket.svelte'
 	import StarEmpty from '../components/icons/StarEmpty.svelte'
