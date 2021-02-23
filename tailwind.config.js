@@ -4,8 +4,18 @@ module.exports = {
 		fontFamily: {
 			'quicksand': ['Quicksand', 'ui-sans-serif', 'system-ui']
 		},
-    extend: {},
+    extend: {
+			translate: {
+				'110': '110%'
+			}
+		},
   },
-  variants: {},
+  variants: {
+		extend: {
+			margin: ['group-hover'],
+			transitionDelay: ['group-hover'],
+			translate: ['group-hover']
+		}
+	},
   plugins: [require('@tailwindcss/line-clamp')],
 };
