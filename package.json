@@ -10,7 +10,7 @@
     "start": "node __sapper__/build",
     "serve": "NODE_ENV=production cp serve.json __sapper__/export/svelte && npx serve ___sapper__/export/svelte",
     "validate": "svelte-check --ignore src/node_modules/@sapper",
-    "lh": "yarn export && cp serve.json __sapper__/export && lhci autorun"
+    "lh": "yarn export && cp serve.json __sapper__/export/svelte && lhci autorun"
   },
   "dependencies": {
     "@tailwindcss/line-clamp": "^0.2.0",
@@ -20,9 +20,7 @@
     "compression": "^1.7.1",
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",
-    "polka": "next",
-    "sirv": "^1.0.11",
-    "svelte-carousel": "^1.0.1"
+    "sirv": "^1.0.11"
   },
   "devDependencies": {
     "@babel/core": "^7.12.13",
@@ -40,13 +38,11 @@
     "@tsconfig/svelte": "^1.0.10",
     "@types/compression": "^1.7.0",
     "@types/node": "^14.14.25",
-    "@types/polka": "^0.5.1",
     "autoprefixer": "^10.2.4",
     "cross-env": "^7.0.3",
     "cssnano": "^4.1.10",
     "imagemin": "^7.0.1",
     "imagemin-mozjpeg": "^9.0.0",
-    "npm-run-all": "^4.1.5",
     "postcss": "^8.2.4",
     "postcss-cli": "^8.3.1",
     "postcss-import": "^14.0.0",
@@ -58,7 +54,6 @@
     "sapper": "^0.29.1",
     "svelte": "^3.32.1",
     "svelte-check": "^1.1.32",
-    "svelte-image": "^0.2.9",
     "svelte-preprocess": "^4.6.6",
     "tailwindcss": "^2.0.2",
     "tslib": "^2.0.1",
