@@ -40,7 +40,7 @@
 <div class="relative flex justify-center py-3 bg-white">
 	{#each categories as category}
 		<a
-			class="mx-2 text-lg border-b border-transparent sm:text-xl sm:mx-8 font-quicksand hover:border-black"
+			class="mx-2 text-lg text-blue-800 border-b border-transparent sm:text-xl sm:mx-8 font-quicksand hover:border-black"
 			href={`${process.env.NODE_ENV === 'production' ? '/svelte' : ''}/spel/${category.id}/${category.title}`}
 		>
 			{category.title}

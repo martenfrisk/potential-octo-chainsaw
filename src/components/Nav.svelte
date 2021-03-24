@@ -8,7 +8,7 @@ import { onMount } from 'svelte';
 	$: showLoginBox = false
 	export const logout = () => {
 		user.set(null)
-		window.localStorage.removeItem('svelte-userdata')
+		typeof window !== 'undefined' && window.localStorage.removeItem('svelte-userdata')
 	}
 	const loginBoxButton = () => {
 		if (window.localStorage.getItem('svelte-userdata')) {
@@ -19,21 +19,21 @@ import { onMount } from 'svelte';
 	}
 
 	onMount(async () => {
-		if (window.localStorage.getItem('svelte-userdata')) {
+		if (typeof window !== 'undefined' && window.localStorage.getItem('svelte-userdata')) {
 			user.set(window.localStorage.getItem('svelte-userdata'))
 		}
 		console.log($user)
 	})
-
+	$: console.log($user)
 </script>
 
 <nav style="top: -2rem" class="sticky z-30 flex items-center w-full h-24 bg-white border-b border-blue-400 border-opacity-50">
-	<div class="sticky top-0 flex items-center justify-between w-full h-16 max-w-6xl mx-auto select-none">
-		<div class="w-1/5">&nbsp;</div>
-		<div class="text-2xl text-center text-blue-900 font-quicksand sm:text-4xl">
+	<div class="sticky top-0 flex flex-wrap items-center justify-between w-full h-16 max-w-6xl mx-auto select-none">
+		<div class="w-0 sm:w-1/5">&nbsp;</div>
+		<div class="w-full text-2xl text-center text-blue-700 sm:w-3/5 font-quicksand sm:text-4xl">
 			<a href="."> gamebooth </a>
 		</div>
-		<div class="flex justify-end w-1/5">
+		<div class="flex justify-center w-full sm:justify-end sm:w-1/5">
 			{#if $user}
 				<a
 					href="profile"

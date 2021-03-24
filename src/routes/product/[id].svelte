@@ -35,12 +35,13 @@
 
 <script lang="typescript">
 	import type { FilteredArticle, IndexProduct } from '../../methods/types'
-
+	import { updateCart } from '../../utils/api'
 	import PSCover from '../../components/PSCover.svelte'
 
 	import Basket from '../../components/icons/Basket.svelte'
 	import StarEmpty from '../../components/icons/StarEmpty.svelte'
 	import MoreProducts from '../../components/MoreProducts.svelte'
+	import { cartOpen, user } from '../../utils/store'
 	// import { fly } from 'svelte/transition'
 	// import { quintIn } from 'svelte/easing'
 	export let product: FilteredArticle, moreProducts: IndexProduct[]
@@ -48,6 +49,42 @@
 		.filter(i => i.productId !== product.productId)
 		.slice(0, 8)
 	let readMore = false
+
+	const addToCart = async () => {
+		$cartOpen = true
+		if ($user) {
+			await updateCart(JSON.parse($user), product.productId, 1)
+		} else {
+			if (typeof window !== 'undefined') {
+				const prevCart = JSON.parse(window.localStorage.getItem('sapper-cart'))
+				let tempObj
+				if (prevCart.some(i => i.productId === product.productId)) {
+					const previousSame = prevCart.find(
+						i => i.productId === product.productId
+					)
+					tempObj = {
+						productName: product.productName,
+						price: product.price,
+						productId: product.productId,
+						quantity: previousSame.quantity + 1,
+					}
+				} else {
+					tempObj = {
+						productName: product.productName,
+						price: product.price,
+						productId: product.productId,
+						quantity: 1,
+					}
+				}
+				if (prevCart) {
+					const newCart = [...prevCart, tempObj]
+					window.localStorage.setItem('sapper-cart', JSON.stringify(newCart))
+				} else {
+					window.localStorage.setItem('sapper-cart', JSON.stringify([tempObj]))
+				}
+			}
+		}
+	}
 </script>
 
 <svelte:head>
@@ -78,21 +115,28 @@
 					Read more...
 				</p>
 			{/if}
-			<div class="flex justify-center w-full mt-4 sm:justify-start">
+			<div class="flex justify-center w-full mt-4 text-sm sm:justify-start">
 				<div class="w-1/2 px-2">
-					<div class="flex items-center px-2 py-px text-blue-500 bg-white border-2 border-blue-400 rounded-md shadow-md">
-						<span>
+					<div
+						class="relative flex items-center justify-center px-2 py-1 text-center text-blue-500 bg-white border-2 border-blue-400 rounded-md shadow-md"
+					>
+						<span class="absolute left-1.5">
 							<StarEmpty />
 						</span>
-						<span class="ml-2">Add to wishlist</span>
+						<span>Add to wishlist</span>
 					</div>
 				</div>
 				<div class="w-1/2 px-2">
-					<div class="flex items-center px-2 py-px text-white border-2 border-blue-500 rounded-md shadow-md bg-gradient-to-r from-blue-600 to-blue-500">
-						<span class="text-white hover:text-yellow-200">
+					<div
+						on:click={addToCart}
+						class="relative flex items-center justify-center px-2 py-1 text-center text-white border-2 border-blue-500 rounded-md shadow-md cursor-pointer hover:text-yellow-200 bg-gradient-to-r from-blue-600 to-blue-500"
+					>
+						<span
+							class="absolute left-1.5 "
+						>
 							<Basket />
 						</span>
-						<span class="ml-2"> Buy </span>
+						<span> Buy </span>
 					</div>
 				</div>
 			</div>

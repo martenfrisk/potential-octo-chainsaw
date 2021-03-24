@@ -10,9 +10,9 @@
 	const addToCart = async () => {
 		$cartOpen = true
 		if ($user) {
-			await updateCart(JSON.parse($user), productId, 1)
+			updateCart(JSON.parse($user), productId, 1)
 		} else {
-			if (typeof window !== undefined) {
+			if (typeof window !== 'undefined') {
 				const prevCart = JSON.parse(window.localStorage.getItem('sapper-cart'))
 				let tempObj
 				if (prevCart.some(i => i.productId === productId)) {

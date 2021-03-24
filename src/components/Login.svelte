@@ -7,21 +7,22 @@
 	let password = 'losen123'
 
 	const login = async () => {
-		if (window.localStorage.getItem('svelte-userdata')) {
-			user.set(window.localStorage.getItem('svelte-userdata'))
-		} else {
-			const res = await loginUser(username, password)
-			if (res.user_data.id === 0) {
-				return Error('Wrong username or password. Try again!')
+		if (typeof window !== 'undefined') {
+			if (window.localStorage.getItem('svelte-userdata')) {
+				user.set(window.localStorage.getItem('svelte-userdata'))
 			} else {
-				user.set(res.user_data)
-				window.localStorage.setItem(
-					'svelte-userdata',
-					JSON.stringify(res.user_data)
-				)
+				const res = await loginUser(username, password)
+				if (res.user_data.id === 0) {
+					return Error('Wrong username or password. Try again!')
+				} else {
+					user.set(res.user_data)
+					window.localStorage.setItem(
+						'svelte-userdata',
+						JSON.stringify(res.user_data)
+					)
+				}
 			}
 		}
-
 	}
 </script>
 

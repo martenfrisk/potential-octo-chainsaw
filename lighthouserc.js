@@ -3,7 +3,7 @@ module.exports = {
 		collect: {
 			startServerCommand: 'serve __sapper__/export',
 			startServerReadyPattern: 'Serving!',
-			url: ['http://localhost:5000/'],
+			url: ['http://localhost:5000/svelte'],
 			settings: {
 				skipAudits: ['uses-http2', 'is-on-https', 'redirects-http'],
 			},
